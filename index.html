@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Portfolio - Justin Kunze</title>
+    <style>
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background: #494949;
+        color: #333;
+      }
+
+      @keyframes move {
+        100% {
+          transform: translate3d(0, 0, 1px) rotate(360deg);
+        }
+      }
+
+      .background {
+        position: fixed;
+        width: 100vw;
+        height: 150vh;
+        top: 0;
+        left: 0;
+        background: #1f1f1f;
+        overflow: hidden;
+        z-index: -1;
+      }
+
+      .background span {
+        position: absolute;
+        width: 1vmin;
+        height: 1vmin;
+        border-radius: 50%;
+        backface-visibility: hidden;
+        animation: move linear infinite;
+      }
+
+      #backgroundVideo {
+        width: 100vw;
+        height: 100vh;
+        object-fit: cover;
+        position: fixed;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        z-index: -1;
+      }
+
+      .navbar {
+        background-color: #333;
+        overflow: hidden;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        position: fixed;
+        top: 0;
+        width: 100%;
+        z-index: 1;
+        box-shadow: 0px 0px 10px black;
+      }
+
+      .navbar a {
+        color: #f2f2f2;
+        text-align: center;
+        padding: 18px 20px;
+        text-decoration: none;
+        font-size: 18px;
+        font-weight: 500;
+        text-shadow: 0px 2px 2px black;
+      }
+
+      .navbar a:hover {
+        background-color: #ddd;
+        color: rgb(55, 55, 55);
+      }
+
+      .navbar a.active {
+        background-color: #393939;
+        color: white;
+      }
+
+      header {
+        margin-top: 30px;
+        background: #222;
+        color: white;
+        box-shadow: 0px 0px 10px black;
+        overflow: hidden;
+        animation: myAnim 0.5s ease-out 0s 1 normal forwards;
+      }
+
+      .mainImage {
+        max-width: 2000px;
+        margin: auto;
+        display: flex;
+        justify-content: center;
+        filter: drop-shadow(0px 0px 10px rgba(255, 255, 255, 0.2));
+      }
+
+      main {
+        max-width: 1200px;
+        margin: 2rem auto;
+        padding: 0 1rem;
+      }
+
+      ul.skills {
+        list-style: none;
+        padding: 0;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+        width: 50%;
+        justify-content: center;
+        margin-left: 25%;
+      }
+
+      ul.skills li {
+        font-size: 1.5rem;
+        font-weight: bold;
+        box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.504);
+        color: white;
+        background: #eb642b;
+        padding: 0.5rem 1rem;
+        border-radius: 5px;
+        text-shadow: 0px 1px 1px black;
+      }
+
+      .gallery {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        flex-direction: row;
+        gap: 1rem;
+      }
+
+      .gallery img {
+        border-radius: 8px;
+        max-width: 300px;
+        box-shadow: 0px 2px 5px black;
+      }
+
+      .logos {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        flex-direction: row;
+        gap: 1rem;
+      }
+
+      .logos img {
+        max-width: 320px;
+        height: auto;
+        object-fit: contain;
+      }
+
+      .banner {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        flex-direction: row;
+        gap: 1rem;
+      }
+
+      .banner img {
+        max-width: 1000px;
+        height: auto;
+        object-fit: contain;
+        border-radius: 8px;
+        box-shadow: 0px 2px 8px black;
+      }
+
+      .videos {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        flex-direction: row;
+        gap: 1rem;
+      }
+
+      .videos video {
+        border-radius: 8px;
+        box-shadow: 0px 2px 5px black;
+        aspect-ratio: 16 / 9;
+        max-width: 40%;
+      }
+
+      .videos iframe {
+        border-radius: 8px;
+        box-shadow: 0px 2px 5px black;
+        aspect-ratio: 16 / 9;
+        max-width: 40%;
+      }
+
+      .embedded_intros {
+        background-color: black !important;
+      }
+
+      footer {
+        text-align: center;
+        padding: 2rem 1rem;
+        background: #222;
+        color: white;
+        font-size: 0.9rem;
+        box-shadow: 0px 0px 10px black;
+      }
+
+      #aboutmeText {
+        color: #e9e9e9;
+        text-align: center;
+        font-weight: 500;
+        font-size: 1.2rem;
+        max-width: 1000px;
+        margin: auto;
+      }
+
+      .spacers {
+        color: #e9e9e9;
+        border-bottom: 2px solid #484848;
+        padding-bottom: 0.5rem;
+        text-align: center;
+        font-size: 2rem;
+        padding: 1rem;
+      }
+
+      section {
+        padding-bottom: 2rem;
+        background-color: #38383876;
+        border-radius: 10px;
+        box-shadow: 0px 0px 10px black;
+        margin-top: 10rem;
+        margin-bottom: 10rem;
+        scroll-margin-top: 30vh;
+        animation: sectionAnim 0.5s ease-out 0s 1 normal forwards;
+        animation-timeline: view();
+        animation-range: entry;
+      }
+
+      #start {
+        scroll-margin-top: 30px;
+      }
+
+      @keyframes myAnim {
+        0% {
+          opacity: 0;
+          transform: translateY(-50px);
+        }
+
+        100% {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes sectionAnim {
+        0% {
+          opacity: 0;
+          transform: translateX(250px);
+        }
+
+        100% {
+          opacity: 1;
+          transform: translateX(0);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <video autoplay muted loop id="backgroundVideo">
+      <source src="assets/Background Animated.webm" type="video/webm" />
+    </video>
+
+    <div class="navbar">
+      <a class="navElement" href="#start">Start</a>
+      <a class="navElement" href="#aboutmeHeader">Über mich</a>
+      <a class="navElement" href="#kenntnisse">Kenntnisse</a>
+      <a class="navElement" href="#videos">Videos</a>
+      <a class="navElement" href="#logos">Logos</a>
+      <a class="navElement" href="#intros">Intros</a>
+      <a class="navElement" href="#youtube_designs">YouTube Designs</a>
+      <a class="navElement" href="#fotografie">Fotografie</a>
+    </div>
+    <header id="start">
+      <div class="background"></div>
+
+      <img class="mainImage" src="/assets/Main Foto.png" />
+    </header>
+
+    <main>
+      <section id="aboutmeHeader">
+        <h2 class="spacers">Über Mich</h2>
+        <p id="aboutmeText">
+          Heyho! 👋 <br />
+          Mein Name ist Justin, ich bin 21 Jahre alt und komme aus dem schönen
+          Wuppertal. 🚟 <br />
+          Seit meinem zehnten Lebensjahr habe ich angefangen, mich kreativ
+          auszutoben. Angefangen hat alles damals mit schlechten Handyvideos bis
+          hin zu 3D-Intros in Cinema 4D und Minecraft Bannern, gemacht mit
+          Photoshop. <br /><br />Über die Jahre hinweg habe ich verschiedene
+          YouTube-Kanäle betrieben und durfte auch andere Kanäle betreuen. Ob es
+          nun Cutter für die Videos ist oder Designer für den YouTube-Kanal.
+          <br /><br />Außerdem verfüge ich über eine langjährige Erfahrung im
+          Livestreaming über Twitch. Von kleinen Gaming-Livestreams bis hin zu
+          professionellen Spielshows war alles dabei.
+        </p>
+      </section>
+
+      <section id="kenntnisse">
+        <h2 class="spacers">Meine Kenntnisse</h2>
+        <ul class="skills">
+          <li>C#</li>
+          <li>HTML</li>
+          <li>CSS</li>
+          <li>JavaScript</li>
+          <li>Photoshop</li>
+          <li>Premiere Pro</li>
+          <li>After Effects</li>
+          <li>Cinema 4D</li>
+          <li>Fotografie</li>
+        </ul>
+      </section>
+
+      <section id="videos">
+        <h2 class="spacers">Editierte Videos</h2>
+        <div class="videos">
+          <iframe
+            src="https://www.youtube.com/embed/b1s36dykLm0"
+            frameborder="0"
+            allowfullscreen
+          ></iframe>
+          <iframe
+            src="https://www.youtube.com/embed/jntfe7YBevs"
+            frameborder="0"
+            allowfullscreen
+          ></iframe>
+          <iframe
+            src="https://www.youtube.com/embed/2R3VhiWO-X0"
+            frameborder="0"
+            allowfullscreen
+          ></iframe>
+          <iframe
+            src="https://www.youtube.com/embed/S8nl9D0SSjM"
+            frameborder="0"
+            allowfullscreen
+          ></iframe>
+        </div>
+      </section>
+
+      <section id="logos">
+        <h2 class="spacers">Erstellte Logos</h2>
+        <div class="logos">
+          <img class="photo" src="assets/MindPoker.png" />
+          <img class="photo" src="assets/TriviaNerd.png" />
+          <img class="photo" src="assets/SocialGems.png" />
+          <img class="photo" src="assets/BrainClash.png" />
+          <img class="photo" src="assets/rhynewave.png" />
+          <img class="photo" src="assets/mySoons.png" />
+        </div>
+      </section>
+
+      <section id="intros">
+        <h2 class="spacers">Erstellte Intros</h2>
+        <div class="videos">
+          <video controls>
+            <source
+              class="embedded_intros"
+              src="assets/Lucendo_Intro.webm"
+              type="video/webm"
+            />
+          </video>
+          <video controls>
+            <source
+              class="embedded_intros"
+              src="assets/Brain Clash Intro.webm"
+              type="video/webm"
+            />
+          </video>
+          <video controls>
+            <source
+              class="embedded_intros"
+              src="assets/HeißerPreis_Intro.webm"
+              type="video/webm"
+            />
+          </video>
+          <video controls>
+            <source
+              class="embedded_intros"
+              src="assets/Mindpoker Intro.webm"
+              type="video/webm"
+            />
+          </video>
+        </div>
+      </section>
+
+      <section id="youtube_designs">
+        <h2 class="spacers">YouTube Designs</h2>
+        <div class="banner">
+          <img class="photo" src="assets/Lucendo_Banner.png" />
+          <img class="photo" src="assets/GCG_Banner.png" />
+          <img class="photo" src="assets/Yuron_Banner.png" />
+        </div>
+      </section>
+
+      <section id="fotografie">
+        <h2 class="spacers">Fotografie</h2>
+        <div class="gallery">
+          <img class="photo" src="assets/bild1.png" />
+          <img class="photo" src="assets/bild2.png" />
+          <img class="photo" src="assets/bild3.png" />
+          <img class="photo" src="assets/bild4.png" />
+          <img class="photo" src="assets/bild5.png" />
+          <img class="photo" src="assets/bild6.jpg" />
+        </div>
+      </section>
+    </main>
+
+    <footer>© 2025 Justin Kunze – Portfolio</footer>
+
+    <script>
+      const background = document.querySelector(".background");
+      const colors = ["#b35f00"];
+      const numDots = 40;
+
+      for (let i = 0; i < numDots; i++) {
+        const span = document.createElement("span");
+
+        const size = Math.random() * 1 + 0.5;
+        const duration = Math.random() * 140 + 10;
+        const delay = Math.random() * -150;
+        const top = Math.random() * 100;
+        const left = Math.random() * 100;
+        const shadowSpread = Math.random() + 0.3;
+        const rotateX = Math.random() * 50 - 25;
+        const rotateY = Math.random() * 50 - 25;
+
+        span.style.top = `${top}%`;
+        span.style.left = `${left}%`;
+        span.style.width = `${size}vmin`;
+        span.style.height = `${size}vmin`;
+        span.style.animationDuration = `${duration}s`;
+        span.style.animationDelay = `${delay}s`;
+        span.style.transformOrigin = `${rotateX}vw ${rotateY}vh`;
+        span.style.boxShadow = `${
+          Math.random() > 0.5 ? "-" : ""
+        }2vmin 0 ${shadowSpread}vmin ${colors[0]}`;
+
+        background.appendChild(span);
+      }
+    </script>
+  </body>
+</html>
