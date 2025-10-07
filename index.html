@@ -101,7 +101,7 @@
         margin: auto;
         display: flex;
         justify-content: center;
-        filter: drop-shadow(0px 0px 10px rgba(255, 255, 255, 0.2));
+        filter: drop-shadow(0px 0px 20px rgba(255, 255, 255, 0.15));
       }
 
       main {
@@ -158,6 +158,7 @@
         max-width: 320px;
         height: auto;
         object-fit: contain;
+        filter: drop-shadow(0px 0px 10px rgba(255, 255, 255, 0.15));
       }
 
       .banner {
@@ -239,11 +240,21 @@
         scroll-margin-top: 30vh;
         animation: sectionAnim 0.5s ease-out 0s 1 normal forwards;
         animation-timeline: view();
-        animation-range: entry;
+        animation-range: entry-crossing;
       }
 
       #start {
         scroll-margin-top: 30px;
+      }
+
+      .explainingText {
+        display: flex;
+        justify-content: center;
+        color: #f4f4f4;
+        font-weight: 400;
+        text-align: center;
+        font-style: italic;
+        padding-bottom: 1rem;
       }
 
       @keyframes myAnim {
@@ -289,7 +300,7 @@
     <header id="start">
       <div class="background"></div>
 
-      <img class="mainImage" src="/assets/Main Foto.webp" />
+      <img class="mainImage" src="/assets/Main_Foto.webp" />
     </header>
 
     <main>
@@ -313,21 +324,31 @@
 
       <section id="kenntnisse">
         <h2 class="spacers">Meine Kenntnisse</h2>
+        <h3 class="explainingText">
+          🌟 = Sehr gute Kenntnisse &nbsp;&nbsp;&nbsp; ⭐ = gute Kenntnisse
+        </h3>
         <ul class="skills">
-          <li>C#</li>
-          <li>HTML</li>
-          <li>CSS</li>
-          <li>JavaScript</li>
-          <li>Photoshop</li>
-          <li>Premiere Pro</li>
-          <li>After Effects</li>
-          <li>Cinema 4D</li>
-          <li>Fotografie</li>
+          <li>🌟 C#</li>
+          <li>🌟 HTML</li>
+          <li>🌟 CSS</li>
+          <li>⭐ JavaScript</li>
+          <li>🌟 Photoshop</li>
+          <li>🌟 Premiere Pro</li>
+          <li>🌟 After Effects</li>
+          <li>⭐ Cinema 4D</li>
+          <li>⭐ Fotografie</li>
+          <li>🌟 Livestreaming</li>
+          <li>🌟 Social Media</li>
         </ul>
       </section>
 
       <section id="videos">
         <h2 class="spacers">Editierte Videos</h2>
+        <h3 class="explainingText">
+          Beispiel für geschnittene Videos für die Kanäle GamingClubgermany und
+          0bvioushero Highlights. <br />
+          Auch die Thumbnails wurden von mir erstellt.
+        </h3>
         <div class="videos">
           <iframe
             src="https://www.youtube.com/embed/b1s36dykLm0"
@@ -366,6 +387,9 @@
 
       <section id="intros">
         <h2 class="spacers">Erstellte Intros</h2>
+        <h3 class="explainingText">
+          Erstellte Intros für YouTube-Kanäle oder Live-Spielshows.
+        </h3>
         <div class="videos">
           <video controls>
             <source
@@ -400,6 +424,9 @@
 
       <section id="youtube_designs">
         <h2 class="spacers">YouTube Designs</h2>
+        <h3 class="explainingText">
+          Erstellte YouTube Banner und Profilbilder.
+        </h3>
         <div class="banner">
           <img class="photo" src="assets/Lucendo_Banner.webp" />
           <img class="photo" src="assets/GCG_Banner.webp" />
