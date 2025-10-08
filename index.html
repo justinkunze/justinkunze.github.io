@@ -257,6 +257,46 @@
         padding-bottom: 1rem;
       }
 
+      #lightbox {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background-color: rgba(0, 0, 0, 0.7);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 10000;
+      }
+
+      #lightbox img {
+        max-width: 90%;
+        max-height: 90%;
+        border-radius: 10px;
+        background-color: #ddd;
+        filter: drop-shadow(0px 0px 10px rgba(255, 255, 255, 0.15));
+      }
+
+      #lightbox-close {
+        position: absolute;
+        top: 30px;
+        right: 40px;
+        font-size: 3rem;
+        color: white;
+        cursor: pointer;
+        user-select: none;
+        font-weight: bold;
+      }
+
+      img.photo {
+        transition: transform 0.3s ease;
+      }
+
+      img.photo:hover {
+        transform: scale(1.05);
+      }
+
       @keyframes myAnim {
         0% {
           opacity: 0;
@@ -308,17 +348,25 @@
         <h2 class="spacers">Über Mich</h2>
         <p id="aboutmeText">
           Heyho! 👋 <br />
-          Mein Name ist Justin, ich bin 21 Jahre alt und komme aus dem schönen
-          Wuppertal. 🚟 <br />
-          Seit meinem zehnten Lebensjahr habe ich angefangen, mich kreativ
-          auszutoben. Angefangen hat alles damals mit schlechten Handyvideos bis
-          hin zu 3D-Intros in Cinema 4D und Minecraft Bannern, gemacht mit
-          Photoshop. <br /><br />Über die Jahre hinweg habe ich verschiedene
-          YouTube-Kanäle betrieben und durfte auch andere Kanäle betreuen. Ob es
-          nun Cutter für die Videos ist oder Designer für den YouTube-Kanal.
-          <br /><br />Außerdem verfüge ich über eine langjährige Erfahrung im
-          Livestreaming über Twitch. Von kleinen Gaming-Livestreams bis hin zu
-          professionellen Spielshows war alles dabei.
+          Ich bin Justin, 21 Jahre alt und komme aus Wuppertal 🚟. <br />
+          Schon als Kind habe ich angefangen, mich kreativ auszuleben. Damals
+          noch mit schlechten Handyvideos, kleinen 3D-Intros und
+          Minecraft-Bannern. Was als Spielerei begann, hat sich über die Jahre
+          zu einer echten Leidenschaft entwickelt. <br /><br />
+          Seitdem habe ich viel dazugelernt und meine Skills in verschiedenen
+          Bereichen erweitert. Ich habe eigene YouTube-Kanäle aufgebaut und auch
+          andere Creator unterstützt, zum Beispiel als Cutter für ihre Videos
+          oder als Designer für ihren Kanal. Dabei konnte ich jede Menge
+          Erfahrung sammeln, wie man Content spannend und professionell
+          gestaltet. <br /><br />
+          Außerdem besitze ich mehrjährige Erfahrung im Bereich Streaming, vor
+          allem auf Plattformen wie Twitch. Von einfachen Gaming-Streams bis hin
+          zu größeren, aufwendigeren Showformaten habe ich schon einiges
+          gemacht, sowohl vor als auch hinter der Kamera. Technik, Ablaufplanung
+          und Entertainment gehören für mich einfach dazu. Heute kombiniere ich
+          Kreativität mit einem guten Gespür für Content, der funktioniert. Egal
+          ob Videoschnitt, Grafikdesign oder Livestream – ich liebe es, digitale
+          Projekte umzusetzen und weiterzuentwickeln.
         </p>
       </section>
 
@@ -445,6 +493,12 @@
           <img class="photo" src="assets/bild6.webp" />
         </div>
       </section>
+
+      <!-- Lightbox Container -->
+      <div id="lightbox" style="display: none">
+        <span id="lightbox-close">&times;</span>
+        <img id="lightbox-img" src="" alt="Vergrößertes Bild" />
+      </div>
     </main>
 
     <footer>© 2025 Justin Kunze – Portfolio</footer>
@@ -479,6 +533,31 @@
 
         background.appendChild(span);
       }
+
+      const lightbox = document.getElementById("lightbox");
+      const lightboxImg = document.getElementById("lightbox-img");
+      const lightboxClose = document.getElementById("lightbox-close");
+
+      document.querySelectorAll("img.photo").forEach((img) => {
+        img.style.cursor = "pointer";
+        img.addEventListener("click", () => {
+          lightboxImg.src = img.src;
+          lightbox.style.display = "flex";
+        });
+      });
+
+      lightboxClose.addEventListener("click", () => {
+        lightbox.style.display = "none";
+        lightboxImg.src = "";
+      });
+
+      // Auch bei Klick außerhalb des Bildes schließen
+      lightbox.addEventListener("click", (e) => {
+        if (e.target === lightbox) {
+          lightbox.style.display = "none";
+          lightboxImg.src = "";
+        }
+      });
     </script>
   </body>
 </html>
